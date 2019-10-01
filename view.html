@@ -1,0 +1,26 @@
+<html>
+<head>
+</head>
+
+<body>
+  <div id="app">
+    <label for="amount">Amount</label>
+    <input type="number" id="amount">
+    <label for="from">From</label>
+    <input type="text" id="from">
+    <label for="to">To</label>
+    <input type="text" id="to" v-bind:value="color">
+    <button v-on:mouseover="calculate">Calc!</button>
+
+  <a :href="test">google</a>
+
+  <span v-if="onSale">on sale</span>
+  <ul>
+    <li v-for="size in sizes">{{size}}</li>
+  </ul>
+  </div>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="view.js"></script>
+</body>
