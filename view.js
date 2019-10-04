@@ -34,7 +34,7 @@ const app = new Vue({
   el: '#app',
 
   data: {
-    amount: 0,
+    amount: null,
     from: 'EUR',
     to: 'CZK',
     result: null,
@@ -64,5 +64,9 @@ const app = new Vue({
     formatNumber(n) {
       return parseFloat(n).toLocaleString(undefined, { 'minimumFractionDigits': 0, 'maximumFractionDigits': 2 })
     },
+  },
+
+  mounted() {
+    document.getElementById('amount').focus()
   },
 })
