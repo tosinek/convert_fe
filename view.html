@@ -4,7 +4,7 @@
 </head>
 
 <body>
-  <div id="app" class="form-style-5">
+  <div id="app">
     <h1>Currency conversion</h1>
     <div>
       <input type="number" id="amount" v-model="amount" placeholder="amount">
@@ -13,12 +13,14 @@
       <button @click="convert" type="button">Convert</button>
     </div>
 
-    <div class="divider-after">
+    <div>
       <h2 :class="{ isError }">{{result}}</h2>
     </div>
 
+    <div class="divider"></div>
+
     <div>
-      <h3>Problems</h3>
+      <h1>Problems</h1>
       <ul>
         <li>Vue: first time using Vue</li>
         <li>Lambda: first time using Lambda</li>
@@ -29,6 +31,13 @@
         <li>Lambda: setup debugging on localhost. Docker doesn't want to start the deamon. I painfully debug with console.logs within CloudWatch</li>
       </ul>
     </div>
+
+    <div class="divider"></div>
+
+    <div>
+      <h1>Author</h1>
+      Tom Soukup, tosinek@gmail.com
+  </div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
