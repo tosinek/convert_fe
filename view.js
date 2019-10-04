@@ -39,6 +39,8 @@ const app = new Vue({
     to: 'EUR',
     result: null,
     isError: false,
+    stats: {},
+    fetchingStats: true,
   },
 
   methods: {
@@ -55,6 +57,8 @@ const app = new Vue({
 
       if (typeof jsonReply !== 'number') this.result = jsonReply
       else this.result = `${this.formatNumber(this.amount)} ${this.from} = ${this.formatNumber(jsonReply)} ${this.to}`
+
+      this.getStats()
     },
 
     setCurrency(code) {
@@ -64,9 +68,30 @@ const app = new Vue({
     formatNumber(n) {
       return parseFloat(n).toLocaleString(undefined, { 'minimumFractionDigits': 0, 'maximumFractionDigits': 2 })
     },
+
+    async getStats() {
+      const reponse = await fetch('https://a7t9zsd4u6.execute-api.eu-central-1.amazonaws.com/default/getConversionStats')
+      const jsonReply = await reponse.json()
+      this.stats = await JSON.parse(jsonReply) // todo fix parsing of the reply in lambda, it returns string here
+      this.fetchingStats = false
+    },
   },
 
   mounted() {
     document.getElementById('amount').focus()
+    this.getStats()
+  },
+
+  computed: {
+    mostPopular() {
+      if (this.stats.destinationCurrencies) {
+        const dc = this.stats.destinationCurrencies
+        const sorted = Object.entries(dc).sort((a, b) => b[1] - a[1])
+        console.log(sorted)
+        const highestCount = sorted[0]
+        return `${highestCount[0]} (${highestCount[1]}x)`
+      }
+      return null
+    },
   },
 })

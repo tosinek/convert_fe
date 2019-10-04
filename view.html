@@ -20,12 +20,23 @@
     <div class="divider"></div>
 
     <div>
+      <h1>Stats</h1>
+      <div v-if="fetchingStats">
+        Loading
+      </div>
+      <div v-else>
+        Requests: {{ stats.conversionCount }}, converted: ${{ formatNumber(stats.conversionAmountInUsd) }}, most popular: {{ mostPopular }}
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div>
       <h1>To do</h1>
       <ul>
-        <li>Setup DynamoDB connection</li>
-        <li>Create another Lambda resource</li>
-        <li>Show stats on page</li>
-        <li>Experiment with SSR (Gridsome?)</li>
+        <li>Cleanup Lambda code</li>
+        <li>Disable Vue development mode</li>
+        <li>Try out with SSR (with Gridsome)</li>
       </ul>
     </div>
 
@@ -41,6 +52,9 @@
         <li>Lambda: Async functions with callbacks did not wait and the caller closed the connection. I ended up wraping http.get as a promise, but also managed to make it work with callbacks as well eventually (removing async keyword).</li>
         <li>Lambda: Setup debugging on localhost. Docker doesn't want to start the deamon. I have to painfully debug with console.logs on CloudWatch.</li>
         <li>Lambda: Importing NPM modules (wanted to use e.g. node-fetch). No solution at the moment as it requires local dev setup (docker start issue).</li>
+        <li>Lambda: Permissions for invoking other functions.</li>
+        <li>Dynamo: First time using DynamoDB</li>
+        <li>Dynamo: Permissions issues, although my account has full access everywhere. Solution: generate policy, attach to the Lambda fn, remove the condition.</li>
         <li>JS: Big numbers will be rounded. There are specialized libraries for big number support.</li>
       </ul>
     </div>
