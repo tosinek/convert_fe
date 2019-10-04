@@ -54,11 +54,15 @@ const app = new Vue({
       this.isError = typeof jsonReply !== 'number'
 
       if (typeof jsonReply !== 'number') this.result = jsonReply
-      else this.result = `${parseFloat(this.amount).toFixed(2)} ${this.from} = ${jsonReply.toFixed(2)} ${this.to}`
+      else this.result = `${this.formatNumber(this.amount)} ${this.from} = ${this.formatNumber(jsonReply)} ${this.to}`
     },
 
     setCurrency(code) {
       this[code.id] = code.value
+    },
+
+    formatNumber(n) {
+      return parseFloat(n).toLocaleString(undefined, { 'minimumFractionDigits': 0, 'maximumFractionDigits': 2 })
     },
   },
 })
