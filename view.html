@@ -1,25 +1,35 @@
 <html>
 <head>
+  <link rel="stylesheet" href="view.css">
 </head>
 
 <body>
-  <div id="app">
-    <label for="amount">Amount</label>
-    <input type="number" id="amount">
-    <label for="from">From</label>
-    <input type="text" id="from">
-    <label for="to">To</label>
-    <input type="text" id="to" v-bind:value="color">
-    <button v-on:mouseover="calculate">Calc!</button>
+  <div id="app" class="form-style-5">
+    <h1>Currency conversion</h1>
+    <div>
+      <input type="number" id="amount" v-model="amount" placeholder="amount">
+      <select-currency id="from" @set-currency="setCurrency"></select-currency> >
+      <select-currency id="to" @set-currency="setCurrency"></select-currency>
+      <button @click="convert" type="button">Convert</button>
+    </div>
 
-  <a :href="test">google</a>
+    <div class="divider-after">
+      <h2 :class="{ isError }">{{result}}</h2>
+    </div>
 
-  <span v-if="onSale">on sale</span>
-  <ul>
-    <li v-for="size in sizes">{{size}}</li>
-  </ul>
+    <div>
+      <h3>Problems</h3>
+      <ul>
+        <li>Vue: first time using Vue</li>
+        <li>Lambda: first time using Lambda</li>
+        <li>Lambda: CORS on the gateway (caused by the proxying the request)</li>
+        <li>Lambda: importing npm modules (wanted to use e.g. node-fetch). I gave up, as I would have to setup AWS and NPM locally</li>
+        <li>Lambda: how the function returns (the handler async keyword was quite important here)</li>
+        <li>Lambda: async functions with callbacks did not wait and the caller closed the connection. I ended up wraping http.get as a promise, but managed to work with callbacks as well (async keyword issue above)</li>
+        <li>Lambda: setup debugging on localhost. Docker doesn't want to start the deamon. I painfully debug with console.logs within CloudWatch</li>
+      </ul>
+    </div>
   </div>
-
 
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script src="view.js"></script>
