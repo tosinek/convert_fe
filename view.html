@@ -23,11 +23,12 @@
       <h1>To do</h1>
       <ul>
         <li>Setup DynamoDB connection</li>
+        <li>Create another Lambda resource</li>
         <li>Show stats on page</li>
-        <li>Fix selected currency defaults</li>
+        <li>Fix selected currency defaults on load</li>
         <li>Focus amount field on load</li>
-        <li>Remove .toFixed</li>
         <li>Deploy web to S3</li>
+        <li>Experiment with SSR (Gridsome?)</li>
       </ul>
     </div>
 
@@ -36,13 +37,13 @@
     <div>
       <h1>Problems</h1>
       <ul>
-        <li>Vue: first time using Vue</li>
-        <li>Lambda: first time using Lambda</li>
-        <li>Lambda: CORS on the gateway (caused by the proxying the request)</li>
-        <li>Lambda: importing npm modules (wanted to use e.g. node-fetch). I gave up, as I would have to setup AWS and NPM locally</li>
-        <li>Lambda: how the function returns (the handler async keyword was quite important here)</li>
-        <li>Lambda: async functions with callbacks did not wait and the caller closed the connection. I ended up wraping http.get as a promise, but managed to work with callbacks as well (async keyword issue above)</li>
-        <li>Lambda: setup debugging on localhost. Docker doesn't want to start the deamon. I painfully debug with console.logs within CloudWatch</li>
+        <li>Vue: First time using Vue.</li>
+        <li>Lambda: First time using Lambda.</li>
+        <li>Lambda: CORS on the gateway (caused by proxying the request).</li>
+        <li>Lambda: How the function returns in callback vs promise mode (the handler async keyword was important here).</li>
+        <li>Lambda: Async functions with callbacks did not wait and the caller closed the connection. I ended up wraping http.get as a promise, but also managed to make it work with callbacks as well eventually (removing async keyword).</li>
+        <li>Lambda: Setup debugging on localhost. Docker doesn't want to start the deamon. I have to painfully debug with console.logs on CloudWatch.</li>
+        <li>Lambda: Importing NPM modules (wanted to use e.g. node-fetch). No solution at the moment as it requires local dev setup (docker start issue).</li>
       </ul>
     </div>
 
