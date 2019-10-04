@@ -36,7 +36,7 @@ const app = new Vue({
   data: {
     amount: null,
     from: 'EUR',
-    to: 'CZK',
+    to: 'EUR',
     result: null,
     isError: false,
   },
