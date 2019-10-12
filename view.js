@@ -45,12 +45,17 @@ const app = new Vue({
 
   methods: {
     async convert() {
-      const url = new URL('https://a7t9zsd4u6.execute-api.eu-central-1.amazonaws.com/default/getConversionRates')
+      const url = new URL('https://a7t9zsd4u6.execute-api.eu-central-1.amazonaws.com/default/convert')
       const params = { amount: this.amount, from: this.from, to: this.to }
       url.search = new URLSearchParams(params)
-      const reponse = await fetch(url)
+      const reponse = await fetch(url).catch(e => {
+        console.error(e)
+        this.isError = true
+        this.result = 'Error during the request'
+        return
+      })
 
-      const jsonReply = await reponse.json()
+      const jsonReply = await reponse.json().catch(e => { console.error(e) })
 
       // it could also be an error
       this.isError = typeof jsonReply !== 'number'
@@ -70,9 +75,13 @@ const app = new Vue({
     },
 
     async getStats() {
-      const reponse = await fetch('https://a7t9zsd4u6.execute-api.eu-central-1.amazonaws.com/default/getConversionStats')
-      const jsonReply = await reponse.json()
-      this.stats = await JSON.parse(jsonReply) // todo fix parsing of the reply in lambda, it returns string here
+      const reponse = await fetch('https://a7t9zsd4u6.execute-api.eu-central-1.amazonaws.com/default/convert/stats').catch(e => {
+        console.error(e)
+        this.isError = true
+        this.result = 'Error while getting stats'
+        return
+      })
+      this.stats = await reponse.json().catch(e => { console.error(e) })
       this.fetchingStats = false
     },
   },
