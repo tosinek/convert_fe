@@ -32,28 +32,16 @@
     <div class="divider"></div>
 
     <div>
-      <h1>To do</h1>
-      <ul>
-        <li>Cleanup Lambda code</li>
-        <li>Disable Vue development mode</li>
-        <li>Try out with SSR (with Gridsome)</li>
-      </ul>
-    </div>
-
-    <div class="divider"></div>
-
-    <div>
       <h1>Problems</h1>
       <ul>
         <li>Vue: First time using Vue.</li>
         <li>Lambda: First time using Lambda.</li>
-        <li>Lambda: CORS on the gateway (caused by proxying the request).</li>
-        <li>Lambda: How the function returns in callback vs promise mode (the handler async keyword was important here).</li>
-        <li>Lambda: Async functions with callbacks did not wait and the caller closed the connection. I ended up wraping http.get as a promise, but also managed to make it work with callbacks as well eventually (removing async keyword).</li>
-        <li>Lambda: Setup debugging on localhost. Docker doesn't want to start the deamon. I have to painfully debug with console.logs on CloudWatch.</li>
-        <li>Lambda: Importing NPM modules (wanted to use e.g. node-fetch). No solution at the moment as it requires local dev setup (docker start issue).</li>
+        <li>Lambda: Setup CORS on the gateway.</li>
+        <li>Lambda: Returning from promise vs callback mode. I ended up wraping http.get as a promise.</li>
+        <li>Lambda: Setup debugging on localhost. Docker doesn't want to start the daemon. I have to painfully debug with console.logs on CloudWatch.</li>
+        <li>Lambda: Importing NPM modules (wanted to use e.g. node-fetch). No solution as it requires local dev setup (docker start issue).</li>
         <li>Lambda: Permissions for invoking other functions.</li>
-        <li>Dynamo: First time using DynamoDB</li>
+        <li>Dynamo: First time using DynamoDB.</li>
         <li>Dynamo: Permissions issues, although my account has full access everywhere. Solution: generate policy, attach to the Lambda fn, remove the condition.</li>
         <li>JS: Big numbers will be rounded. There are specialized libraries for big number support.</li>
       </ul>
