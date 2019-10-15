@@ -58,7 +58,8 @@ const app = new Vue({
       const jsonReply = await reponse.json().catch(e => { console.error(e) })
 
       // it could also be an error
-      this.isError = typeof jsonReply !== 'number'
+      this.isError = typeof jsonReply !== 'number' // todo base it on response status code, not on the data type
+      // the problem is that all replies are 200 as I could not manage to setup proxy for non 200 gateway replies (probably some issue with the passthrough behaviour)
 
       if (typeof jsonReply !== 'number') this.result = jsonReply
       else this.result = `${this.formatNumber(this.amount)} ${this.from} = ${this.formatNumber(jsonReply)} ${this.to}`
